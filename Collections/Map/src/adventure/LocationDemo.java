@@ -32,6 +32,13 @@ public class LocationDemo {
         locations.get(5).addExits("S", 1);
         locations.get(5).addExits("W", 2);
 
+        Map<String,String> vocabulary = new HashMap<String,String>();
+        vocabulary.put("QUIT","Q");
+        vocabulary.put("NORTH","N");
+        vocabulary.put("SOUTH","S");
+        vocabulary.put("EAST","E");
+        vocabulary.put("WEST","W");
+
 
         int loc = 1;
         while (true) {
@@ -49,7 +56,7 @@ public class LocationDemo {
 
             String direction = sc.nextLine().toUpperCase();
 
-            direction = checkInput(direction.toLowerCase());
+            direction = checkInput(direction);
             if (direction.equals("invalid")){
                 System.out.println("Invalid direction");
             }else{
@@ -66,19 +73,19 @@ public class LocationDemo {
 
     }
     private static String checkInput(String input){
-        if (input.contains("west")||input.contains("W")){
+        if (input.contains("WEST")||input.contains("W")){
             return "W";
         }
-        if (input.contains("east")||input.contains("E")){
+        if (input.contains("EAST")||input.contains("E")){
             return "E";
         }
-        if (input.contains("north")|| input.contains("N")){
+        if (input.contains("NORTH")|| input.contains("N")){
             return "N";
         }
-        if (input.contains("south")||input.contains("S")){
+        if (input.contains("SOUTH")||input.contains("S")){
             return "S";
         }
-        if (input.contains("quit")||input.contains("Q")){
+        if (input.contains("QUIT")||input.contains("Q")){
             return "Q";
         }
         return "invalid";
