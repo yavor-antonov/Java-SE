@@ -1,11 +1,9 @@
 package bank;
 
-import bankProducts.BankProduct;
-import bankProducts.Credit;
-import bankProducts.Deposit;
+import credits.bankProducts.Credit;
+import credits.bankProducts.Deposit;
 import interfaces.IClient;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;

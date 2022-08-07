@@ -1,4 +1,4 @@
-package bankProducts;
+package credits.bankProducts;
 
 import bank.Client;
 

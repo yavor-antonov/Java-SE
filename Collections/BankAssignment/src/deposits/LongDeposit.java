@@ -1,7 +1,7 @@
 package deposits;
 
 import bank.Client;
-import bankProducts.Deposit;
+import credits.bankProducts.Deposit;
 
 public class LongDeposit extends Deposit {
     private static int counterID = 0;

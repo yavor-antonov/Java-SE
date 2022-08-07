@@ -1,7 +1,7 @@
 package credits;
 
 import bank.Client;
-import bankProducts.Credit;
+import credits.bankProducts.Credit;
 
 public class HomeCredit extends Credit {
     private static int counterID = 0;

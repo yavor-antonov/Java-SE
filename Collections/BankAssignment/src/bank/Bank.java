@@ -1,8 +1,8 @@
 package bank;
 
-import bankProducts.BankProduct;
-import bankProducts.Credit;
-import bankProducts.Deposit;
+import credits.bankProducts.BankProduct;
+import credits.bankProducts.Credit;
+import credits.bankProducts.Deposit;
 import interfaces.IBank;
 
 

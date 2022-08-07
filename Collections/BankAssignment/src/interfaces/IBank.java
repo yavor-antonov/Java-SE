@@ -1,8 +1,8 @@
 package interfaces;
 
 import bank.Client;
-import bankProducts.Credit;
-import bankProducts.Deposit;
+import credits.bankProducts.Credit;
+import credits.bankProducts.Deposit;
 
 public interface IBank {
     Deposit receiveDeposit(String type,float amount,Client client);
