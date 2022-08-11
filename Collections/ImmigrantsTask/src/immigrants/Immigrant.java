@@ -30,6 +30,9 @@ public abstract class Immigrant {
     }
 
     public void immigrate(City city,Country country){
+        if (city == this.currentCity){
+            return;
+        }
         if (city.checkImmigrant(this)){
             this.currentCity=city;
             this.currentCountry = country;
@@ -59,7 +62,7 @@ public abstract class Immigrant {
         System.out.println(this + " is currently in: " + currentCity + " Has passport: " + hasPassport() + " and has " + this.cash);
         System.out.print("Relatives: ");
         for (Immigrant relative: relatives){
-            System.out.print(relatives + ",");
+            System.out.print(relative + ",");
         }
         System.out.println();
     }
@@ -90,6 +93,10 @@ public abstract class Immigrant {
 
     @Override
     public String toString() {
-        return this.passport.name;
+        if (this.hasPassport()){
+            return this.passport.name;
+        }else{
+            return "Unknown";
+        }
     }
 }

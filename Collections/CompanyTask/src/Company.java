@@ -44,6 +44,24 @@ public class Company {
         return result;
     }
 
+    public SortedSet <Employee> getEmployees(String department, Collection<Employee> listOfEmployees) throws CompanyException {
+        if ((department != null) && (employeeList.containsKey(department)) ){
+            SortedSet<Employee> result = new TreeSet<Employee>(new NameComparator());
+            Set<Employee> employeesInDepartment = new HashSet<>(this.employeeList.get(department));
+//            for (Employee employee : listOfEmployees){
+//                if (employeesInDepartment.contains(employee)){
+//                    result.add(employee);
+//                }
+//            }
+            employeesInDepartment.retainAll(listOfEmployees);
+//            listOfEmployees.retainAll(employeesInDepartment);
+            result.addAll(employeesInDepartment);
+            return result;
+        }
+        throw  new CompanyException("No such department");
+    }
+
+
     private Comparator<Employee> getComparatorBySortCriteria (String sortBy){
         if (sortBy.toLowerCase().equals("name")){
             return new NameComparator();
@@ -57,11 +75,6 @@ public class Company {
         return null;
     }
 
-    public void removeDuplicates(){
-        for (String department : employeeList.keySet()){
-            for (Employee employee : employeeList.get(department)){
-            }
-        }
-    }
+
 
 }

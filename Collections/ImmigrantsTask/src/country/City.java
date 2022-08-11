@@ -52,4 +52,7 @@ public class City {
     public String toString() {
         return this.name;
     }
+    public void printCityInfo(){
+        System.out.println(this + " population: " + this.population);
+    }
 }

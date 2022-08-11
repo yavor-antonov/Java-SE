@@ -37,4 +37,16 @@ public class Employee {
         return idNumber;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if ((obj != null) && (obj instanceof Employee)){
+            return ((Employee) obj).salary == this.salary && ((Employee) obj).name == this.name;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.name.hashCode() * ((int)salary);
+    }
 }

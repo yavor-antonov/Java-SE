@@ -1,8 +1,6 @@
 package country;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Country {
     private String name;
@@ -23,4 +21,10 @@ public class Country {
     public Set<City> getCities() {
         return this.cities;
     }
+
+    public City giveMeRandomCity() {
+        return new ArrayList<City>(cities).get(new Random().nextInt(cities.size()));
+    }
+
+
 }

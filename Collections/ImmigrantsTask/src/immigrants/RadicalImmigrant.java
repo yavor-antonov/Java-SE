@@ -41,13 +41,16 @@ public class RadicalImmigrant extends Immigrant{
     }
 
     public void startShooting() throws BombExplodedException {
-        for (int i = 0; i < weaponsList.size(); i++) {
-            try {
-                getCurrentCity().casualties(weaponsList.get(i).shoot());
-            }catch (BombExplodedException e){
-                getCurrentCountry().removeCity(getCurrentCity());
-            }
+        if (getCurrentCity()!= null) {
+            for (int i = 0; i < weaponsList.size(); i++) {
+                try {
+                    getCurrentCity().casualties(weaponsList.get(i).shoot());
+                } catch (BombExplodedException e) {
+                    System.out.println(getCurrentCity() + " destroyed!");
+                    getCurrentCountry().removeCity(getCurrentCity());
+                }
 
+            }
         }
     }
 }

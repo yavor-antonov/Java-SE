@@ -31,6 +31,9 @@ public class ImmigrantsDemo {
 
         for(Immigrant immigrant : immigrants){
             for (int i =1 ; i<=5;i++){
+                if (weapons.size()==0){
+                    break;
+                }
                 int index = new Random().nextInt(weapons.size());
                 if (immigrant instanceof RadicalImmigrant) {
                     try {
@@ -41,7 +44,27 @@ public class ImmigrantsDemo {
                     }
                 }
             }
+
+            immigrant.immigrate(bulgaria.giveMeRandomCity(),bulgaria);
         }
+
+        for(Immigrant immigrant : immigrants){
+            immigrant.printInfo();
+        }
+
+        for (int i = 1 ; i<=NUMBER_OF_SHOOTERS;i++){
+            int index = new Random().nextInt(immigrants.size());
+            Immigrant immigrant = immigrants.get(index);
+            if (immigrant instanceof RadicalImmigrant) {
+                try {
+                    ((RadicalImmigrant) immigrant).startShooting();
+                }catch (BombExplodedException e){
+                    System.out.println("Bomb exploded");
+                }
+
+            }
+        }
+
 
 
     }
