@@ -82,9 +82,6 @@ public abstract class Vignette {
 
     @Override
     public String toString() {
-        return "Vignette{" +
-                "price=" + price() +
-                ", colour=" + colour +
-                '}';
+        return "[price=" + price() + ", colour=" + colour + ']';
     }
 }

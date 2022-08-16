@@ -1,5 +1,5 @@
 public class Truck extends Vehicle{
-    public Truck(VehicleType type) {
+    public Truck() {
         super(VehicleType.TRUCK);
     }
 }
