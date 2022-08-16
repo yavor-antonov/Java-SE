@@ -1,7 +1,7 @@
-import java.time.LocalDate;
+
 import java.util.Date;
 
-public class Vehicle {
+public abstract class Vehicle {
     private VehicleType type;
     private Vignette vignette;
     private Date manufacturingDate;

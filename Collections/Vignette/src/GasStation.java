@@ -32,7 +32,7 @@ public class GasStation {
             default:
                 throw new IllegalStateException("Unexpected value");
         }
-        int price = Vignette.price(vignetteColour,vignetteValidity);
+        int price = Vignette.checkVignettePrice(vignetteColour,vignetteValidity);
         if (vignettes.get(price).peek() != null){
             revenue+=price;
             vignettes.get(price).peek().setSoldDate(LocalDate.now());
@@ -52,6 +52,11 @@ public class GasStation {
             default:
                 throw new IllegalStateException("Unexpected value");
         }
-        return Vignette.price(vignetteColour,vignetteValidity);
+        return Vignette.checkVignettePrice(vignetteColour,vignetteValidity);
+    }
+    public void printAvailableVignettes(){
+        for (Integer price : vignettes.keySet()){
+            System.out.println(vignettes.get(price));
+        }
     }
 }
