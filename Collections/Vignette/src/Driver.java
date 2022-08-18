@@ -1,8 +1,6 @@
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class Driver {
     private String name;
@@ -17,37 +15,47 @@ public class Driver {
         this.gasStation = gasStation;
     }
 
-    public void buyVignette (int numberOfVehicle,VignetteValidity vignetteValidity){
-        int indexVehicle = numberOfVehicle-1;
-        if (indexVehicle < 0 || indexVehicle > (vehicles.size()-1)){
+    public void buyVignette (int indexOfVehicle,VignetteValidity vignetteValidity){
+        if (indexOfVehicle < 0 || indexOfVehicle > (vehicles.size()-1)){
             System.out.println("Wrong index of Vehicle");
             return;
         }
-        Vehicle vehicle = vehicles.get(indexVehicle);
+        Vehicle vehicle = vehicles.get(indexOfVehicle);
+        System.out.println(vehicle);
         if (this.gasStation.priceInquiry(vehicle.getType(),vignetteValidity)<=this.money) {
-            vehicle.setVignette(this.gasStation.sellVignette(vehicle.getType(), vignetteValidity));
+            Vignette vignette = this.gasStation.sellVignette(vehicle.getType(), vignetteValidity);
+            if (vignette != null) {
+                vehicle.setVignette(vignette);
+            }else{
+                System.out.println("No available vignettes at the gas Station");
+                return;
+            }
         }else{
             System.out.println("Not enough money");
             return;
         }
-
         this.money-= vehicle.getVignette().price();
     }
 
-    public void buyVignetteForAllVehicles(VignetteValidity vignetteValidity){
-        for (int i = 0; i < this.vehicles.size();i++){
-            buyVignette(i+1,vignetteValidity);
+    public void buyVignetteForAllVehiclesRandomValidity(){
+        for (int index = 0; index < this.vehicles.size();index++){
+            buyVignette(index,VignetteValidity.randomValidity());
         }
+
     }
 
     public void vehiclesWithExpiredVignette(LocalDate date){
         for (int i = 0; i< vehicles.size();i++){
             Vehicle vehicle = vehicles.get(i);
+            if (vehicle.getVignette()==null){
+                System.out.println("Vehicle number: " + (i+1) + " No vignette available");
+                return;
+            }
             LocalDate expiryDate = vehicle.getVignette().getSoldDate();
 
             switch (vehicle.getVignette().getValidity()){
-                case DAY:expiryDate = expiryDate.plusDays(1);
-                case MONTH:expiryDate = expiryDate.plusMonths(1);
+                case DAY:expiryDate = expiryDate.plusDays(1);break;
+                case MONTH:expiryDate = expiryDate.plusMonths(1);break;
                 case YEAR:expiryDate = expiryDate.plusYears(1);
             }
             if (expiryDate.compareTo(date)<0){
@@ -65,5 +73,13 @@ public class Driver {
         }else{
             System.out.println("Unsuccessfull attempt to add vehicle");
         }
+    }
+
+    public List<Vehicle> getVehicles() {
+        return Collections.unmodifiableList(this.vehicles);
+    }
+
+    public void printInfo(){
+        System.out.println(name + " , money:" + money + " Number of vehicles: " + vehicles.size());
     }
 }

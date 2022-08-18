@@ -16,6 +16,9 @@ public abstract class Vehicle {
     }
 
     public void setVignette(Vignette vignette) {
+        if (vignette == null){
+            return;
+        }
         if (vignette.vehicleType() == this.type) {
             this.vignette = vignette;
         }else{

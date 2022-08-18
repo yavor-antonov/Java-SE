@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,6 +19,36 @@ public class VignetteDemo {
         List<Driver> drivers = generateDrivers(NUMBER_OF_DRIVERS,gasStation);
         List<Vehicle> vehicles = generateVehicles(NUMBER_OF_VEHICLES);
         addVehiclesToDrivers(drivers,vehicles);
+
+        for (int index =0; index<drivers.size();index++){
+            Random rand = new Random();
+            Driver driver = drivers.get(index);
+            if ((index+1)%3==0){ // Every 3rd driver
+                int counter =0;
+                while (true){
+                    int randomVehicleIndex = rand.nextInt(driver.getVehicles().size());
+                    if (driver.getVehicles().get(randomVehicleIndex).getVignette()==null){
+                        driver.buyVignette(randomVehicleIndex,VignetteValidity.randomValidity());
+                        counter++;
+                    }
+                    if (counter>=5){
+                        break;
+                    }
+                }
+            }else{
+                driver.buyVignetteForAllVehiclesRandomValidity();
+            }
+        }
+        for(Driver driver : drivers){
+            driver.printInfo();
+            driver.vehiclesWithExpiredVignette(LocalDate.now().plusMonths(6));
+        }
+
+        gasStation.printAvailableVignettes();
+
+
+
+
     }
     public static void generateVignette(int numberOfVignettes, GasStation gasStation){
         Vignette vignette = null;
