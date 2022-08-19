@@ -1,5 +1,8 @@
+import Vehicles.*;
+import Vignettes.*;
+
+
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.*;
 
 public class Driver {
@@ -9,15 +12,19 @@ public class Driver {
     private GasStation gasStation;
 
     public Driver(String name, int money,GasStation gasStation) {
-        this.name = name;
-        this.vehicles = new ArrayList<Vehicle>();
-        this.money = money;
-        this.gasStation = gasStation;
+        if (name!=null && (!name.equals("")) && gasStation!=null) {
+            this.name = name;
+            this.vehicles = new ArrayList<Vehicle>();
+            this.money = money;
+            this.gasStation = gasStation;
+        }else{
+            throw new IllegalArgumentException();
+        }
     }
 
-    public void buyVignette (int indexOfVehicle,VignetteValidity vignetteValidity){
+    public void buyVignette (int indexOfVehicle, VignetteValidity vignetteValidity){
         if (indexOfVehicle < 0 || indexOfVehicle > (vehicles.size()-1)){
-            System.out.println("Wrong index of Vehicle");
+            System.out.println("Wrong index of Vehicle.Vehicle");
             return;
         }
         Vehicle vehicle = vehicles.get(indexOfVehicle);
@@ -48,7 +55,7 @@ public class Driver {
         for (int i = 0; i< vehicles.size();i++){
             Vehicle vehicle = vehicles.get(i);
             if (vehicle.getVignette()==null){
-                System.out.println("Vehicle number: " + (i+1) + " No vignette available");
+                System.out.println("Vehicle.Vehicle number: " + (i+1) + " No vignette available");
                 return;
             }
             LocalDate expiryDate = vehicle.getVignette().getSoldDate();
@@ -60,7 +67,7 @@ public class Driver {
             }
             if (expiryDate.compareTo(date)<0){
                 System.out.println("===========================");
-                System.out.println("Vehicle number: " + (i+1));
+                System.out.println("Vehicle.Vehicle number: " + (i+1));
                 System.out.println("Date " + date);
                 System.out.println("Expiry date: " + expiryDate);
             }

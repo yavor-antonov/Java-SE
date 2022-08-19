@@ -1,3 +1,6 @@
+package Vehicles;
+
+import Vignettes.Vignette;
 
 import java.util.Date;
 
@@ -7,8 +10,12 @@ public abstract class Vehicle {
     private Date manufacturingDate;
 
     public Vehicle(VehicleType type) {
-        this.type = type;
-        this.manufacturingDate = new Date();
+        if (type!=null) {
+            this.type = type;
+            this.manufacturingDate = new Date();
+        }else{
+            throw new IllegalArgumentException();
+        }
     }
 
     public Vignette getVignette() {

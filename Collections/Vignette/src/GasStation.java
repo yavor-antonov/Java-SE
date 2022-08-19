@@ -1,3 +1,6 @@
+import Vignettes.*;
+import Vehicles.*;
+
 import java.time.LocalDate;
 import java.util.*;
 
@@ -20,7 +23,7 @@ public class GasStation {
         }
     }
 
-    public Vignette sellVignette(VehicleType vehicleType,VignetteValidity vignetteValidity){
+    public Vignette sellVignette(VehicleType vehicleType, VignetteValidity vignetteValidity){
         if (vehicleType == null || vignetteValidity == null){
             throw new NullPointerException();
         }

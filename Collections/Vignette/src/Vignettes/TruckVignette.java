@@ -1,6 +1,8 @@
+package Vignettes;
+
 import java.time.Duration;
 
-public class TruckVignette extends Vignette{
+public class TruckVignette extends Vignette {
     public TruckVignette(VignetteValidity validity) {
         super(VignetteColour.RED, validity);
     }

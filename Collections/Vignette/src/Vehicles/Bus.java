@@ -1,4 +1,6 @@
-public class Bus extends Vehicle{
+package Vehicles;
+
+public class Bus extends Vehicle {
     public Bus() {
         super(VehicleType.BUS);
     }

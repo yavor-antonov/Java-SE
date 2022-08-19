@@ -1,6 +1,8 @@
+import Vehicles.*;
+import Vignettes.*;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -28,7 +30,7 @@ public class VignetteDemo {
                 while (true){
                     int randomVehicleIndex = rand.nextInt(driver.getVehicles().size());
                     if (driver.getVehicles().get(randomVehicleIndex).getVignette()==null){
-                        driver.buyVignette(randomVehicleIndex,VignetteValidity.randomValidity());
+                        driver.buyVignette(randomVehicleIndex, VignetteValidity.randomValidity());
                         counter++;
                     }
                     if (counter>=5){
