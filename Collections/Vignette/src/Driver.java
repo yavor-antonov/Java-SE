@@ -78,7 +78,7 @@ public class Driver {
         if ((vehicle != null) && (!(this.vehicles.contains(vehicle)))){
             this.vehicles.add(vehicle);
         }else{
-            System.out.println("Unsucessfull attempt to add vehicle");
+            System.out.println("Unsuccessful attempt to add vehicle");
         }
     }
 
