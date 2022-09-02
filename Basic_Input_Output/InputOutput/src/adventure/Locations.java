@@ -1,21 +1,20 @@
 package adventure;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class Locations implements Map<Integer, Location> {
-    private static Map<Integer, Location> locations = new HashMap<>();
+    private static Map<Integer, Location> locations = new LinkedHashMap<>();
 
     public static void main(String[] args) throws IOException{
-        try (FileWriter locFile = new FileWriter("locations.txt");
-             FileWriter dirFile = new FileWriter("directions.txt")){
+        try (BufferedWriter locFile = new BufferedWriter(new FileWriter("locations.txt"));
+             BufferedWriter dirFile = new BufferedWriter(new FileWriter("directions.txt"))){
             for (Location location : locations.values()){
                 locFile.write(location.getLocationID() + "," + location.getDescription() + "\n");
                 for (String direction : location.getExits().keySet()){
-                    dirFile.write(location.getLocationID() + "," + direction + "," + location.getExits().get(direction) + "\n");
+                    if (!direction.equalsIgnoreCase("Q")){
+                        dirFile.write(location.getLocationID() + "," + direction + "," + location.getExits().get(direction) + "\n");
+                    }
                 }
             }
         }
@@ -23,12 +22,12 @@ public class Locations implements Map<Integer, Location> {
     }
 
     static {
-        try (Scanner scanner = new Scanner(new FileReader("locations_big.txt"))){
-            scanner.useDelimiter(",");
-            while(scanner.hasNextLine()){
-                int loc = scanner.nextInt();
-                scanner.skip(scanner.delimiter());
-                String description = scanner.nextLine();
+        try (BufferedReader locFile = new BufferedReader(new FileReader("locations_big.txt"))){
+            String input;
+            while((input = locFile.readLine()) != null){
+                String[] data = input.split(",",2);
+                int loc = Integer.parseInt(data[0]);
+                String description = data[1];
                 System.out.println("Imported loc:" + loc + ": " + description);
                 Map<String, Integer> tempExit = new HashMap<>();
                 locations.put(loc, new Location(loc,description,tempExit));
