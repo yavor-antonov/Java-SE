@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class LocationDemo {
-    public static final int STARTING_LOCATION = 64;
+    public static final int STARTING_LOCATION = 1;
     private static Locations locations = new Locations();
 
     public static void main(String[] args) throws IOException {
